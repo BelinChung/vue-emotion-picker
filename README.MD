@@ -1,10 +1,12 @@
 ## vue-emotion-picker
 
-基于 Vue 的表情选择器组件
+基于 Vue3 的表情选择器组件
+
+![screenshot](./example/screenshot.png)
 
 ### 使用方式
 
-1. Using with script tag
+1. Usage with script tag
 
 ```
 <script src="//localhost/vue-emotion-picker.js"></script>
@@ -37,8 +39,6 @@ const prop = ref({
 ```
 
 具体使用参考：[`example/app.vue`](./example/app.vue)
-
-![screenshot]('./example/screenshot.png')
 
 ### License
 
