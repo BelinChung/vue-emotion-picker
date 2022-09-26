@@ -1,7 +1,13 @@
-import { emotionMap, baseResUrl } from './data'
+import { getBaseResUrl, getEmotionMap } from './options'
 
-export const parseEmotion = (text, baseUrl) => {
-  baseUrl = baseUrl || baseResUrl
+let emotionMap
+
+export const parseEmotion = (text, baseResUrl) => {
+  if (!emotionMap) {
+    emotionMap = getEmotionMap()
+  }
+
+  baseResUrl = baseResUrl || getBaseResUrl()
   text = text
     .replace(/<.*?>/g, ($1) => {
       $1 = $1.replace('[', '&#91;')
@@ -12,8 +18,8 @@ export const parseEmotion = (text, baseUrl) => {
       if (emotionMap[$1]) {
         let url = emotionMap[$1].url
         if (url) {
-          url = baseUrl + url
-          return '<img class="v-emotion" src="' + url + '" alt="' + $1 + '" />'
+          url = baseResUrl + url
+          return `<img class="v-emotion" src="${url}" alt="${$1}" title="${$1}" />`
         }
       }
       return $1

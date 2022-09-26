@@ -1,12 +1,16 @@
 import VueEmotionPicker from './picker.vue'
 import { parseEmotion } from './utils'
+import { setGlobalOptions } from './options'
 
 // Declare install function executed by Vue.use()
-export function install(Vue) {
+function install(Vue, opts = {}) {
   if (install.installed) return
   install.installed = true
-  Vue.component('vue-emotion-picker', VueEmotionPicker)
+  setGlobalOptions(opts)
+  Vue.component('VueEmotionPicker', VueEmotionPicker)
 }
+
+VueEmotionPicker.install = install
 
 // Create module definition for Vue.use()
 const plugin = {
@@ -24,7 +28,6 @@ if (GlobalVue) {
   GlobalVue.use(plugin)
 }
 
-// To allow use as module (npm/webpack/etc.) export component
 export default VueEmotionPicker
 
 export { VueEmotionPicker, parseEmotion }

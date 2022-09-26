@@ -19,19 +19,19 @@
 </template>
 
 <script setup>
+import { getEmotionData } from './options'
+
 const props = defineProps(['activeCategory'])
 const emit = defineEmits(['update:activeCategory'])
 
-const categories = [
-  {
-    key: 'default',
-    value: '默认'
-  },
-  {
-    key: 'others',
-    value: '其他'
+const emotionData = getEmotionData()
+
+const categories = Object.keys(emotionData).map((item) => {
+  return {
+    key: item,
+    value: item
   }
-]
+})
 </script>
 
 <style lang="scss" scoped>

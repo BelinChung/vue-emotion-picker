@@ -22,14 +22,14 @@ import Category from './category.vue'
 import Emotion from './emotion.vue'
 import Page from './page.vue'
 import vClickOutside from 'click-outside-vue3/src/v-click-outside'
-import { emotionData, baseResUrl } from './data'
+import { getEmotionData, getBaseResUrl } from './options'
 import { ref, computed, watch, nextTick } from 'vue'
 
 import './style.scss'
 
 const defaultProp = {
   pageSize: 72,
-  baseUrl: baseResUrl,
+  baseUrl: getBaseResUrl(),
   offset: {
     top: 0,
     left: 0
@@ -50,7 +50,10 @@ const props = defineProps({
 })
 const emit = defineEmits(['update:visible', 'picked'])
 
-const activeCategory = ref('default')
+const emotionData = getEmotionData()
+const defaulCategory = Object.keys(emotionData)[0]
+
+const activeCategory = ref(defaulCategory)
 const activePage = ref(1)
 const position = ref({
   position: 'absolute',
@@ -112,10 +115,11 @@ const computedPosition = () => {
 
 watch(
   () => props.visible,
-  async (val) => {
+  (val) => {
     if (!val) return false
-    await nextTick()
-    computedPosition()
+    nextTick(() => {
+      computedPosition()
+    })
   }
 )
 </script>

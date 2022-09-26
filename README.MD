@@ -18,13 +18,19 @@
 yarn add vue-emotion-picker
 ```
 
-``` vue
+```
 import VueEmotionPicker from 'vue-emotion-picker'
 import 'vue-emotion-picker/dist/vue-emotion-picker.css'
 
+createApp(App)
+  .use(VueEmotionPicker, {
+    baseResUrl: '//localhost/emotions/'
+  })
+  .mount('#app')
+
 // 配置项
 const prop = ref({
-  baseUrl: '/assets/emotions/',
+  baseUrl: '//localhost/emotions/',
   offset: {
     top: 0,
     left: 0

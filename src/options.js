@@ -1,3 +1,6 @@
+const baseResUrl = 'https://raw.githubusercontent.com/BelinChung/api-mock/master/assets/emotions/'
+let options = {}
+
 function keyBy(list, by) {
   return list.reduce((acc, x) => {
     acc[by(x)] = x
@@ -5,10 +8,8 @@ function keyBy(list, by) {
   }, {})
 }
 
-export const baseResUrl = 'https://raw.githubusercontent.com/BelinChung/api-mock/master/assets/emotions/'
-
-export const emotionData = {
-  default: [
+const defaultEmotions = {
+  表情: [
     {
       phrase: '[微笑]',
       url: '2018new_weixioa02_org.png'
@@ -334,7 +335,7 @@ export const emotionData = {
       url: '2020_redflower_org.png'
     }
   ],
-  others: [
+  其他: [
     {
       phrase: '[心]',
       url: '2018new_xin_org.png'
@@ -674,4 +675,31 @@ export const emotionData = {
   ]
 }
 
-export const emotionMap = keyBy([...emotionData.default, ...emotionData.others], (i) => i.phrase)
+export const getEmotionData = () => {
+  const { emotions = {} } = getGlobalOptions()
+  return {
+    ...emotions,
+    ...defaultEmotions
+  }
+}
+
+export const getEmotionMap = () => {
+  const emotionData = getEmotionData()
+  const emotions = Object.keys(emotionData).reduce((preVal, curVal) => {
+    return [...preVal, ...emotionData[curVal]]
+  }, [])
+  return keyBy(emotions, (i) => i.phrase)
+}
+
+export const getGlobalOptions = () => {
+  return options
+}
+
+export const setGlobalOptions = (opts) => {
+  options = opts
+}
+
+export const getBaseResUrl = () => {
+  const opts = getGlobalOptions()
+  return opts.baseResUrl || baseResUrl
+}

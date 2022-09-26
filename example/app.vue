@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { VueEmotionPicker, parseEmotion } from '../src'
+import { parseEmotion } from '../src'
 import { ref } from 'vue'
 
 const visible = ref(false)
