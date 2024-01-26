@@ -1,10 +1,10 @@
 <template>
-  <div class="categories flex-row flex-hc">
-    <ul class="list flex-row flex-rest-width">
-      <li class="item" v-for="item in categories" :key="item.key">
+  <div class="emotion-categories flex-row flex-hc">
+    <ul class="emotion-categories__list flex-row flex-rest-width">
+      <li class="emotion-categories__item" v-for="item in categories" :key="item.key">
         <a
           href="javascript:"
-          class="category"
+          class="emotion-categories__category"
           :class="{ current: props.activeCategory === item.key }"
           @click="emit('update:activeCategory', item.key)"
           >{{ item.value }}</a
@@ -35,12 +35,12 @@ const categories = Object.keys(emotionData).map((item) => {
 </script>
 
 <style lang="scss" scoped>
-.categories {
+.emotion-categories {
   width: 100%;
-  .item {
+  &__item {
     list-style: none;
   }
-  .category {
+  &__category {
     color: #0a8cd2;
     cursor: pointer;
     padding: 3px 10px;
@@ -59,23 +59,23 @@ const categories = Object.keys(emotionData).map((item) => {
       text-decoration: none;
     }
   }
-  .switch {
-    .next,
-    .prev {
-      float: left;
-      color: #555;
-      width: 22px;
-      height: 22px;
-      font-size: 20px;
-      margin-left: 5px;
-      line-height: 20px;
-      text-align: center;
-      background: #f8f8f8;
-      text-decoration: none;
-      &:hover {
-        background: #efeeee;
-      }
-    }
-  }
+  // .switch {
+  //   .next,
+  //   .prev {
+  //     float: left;
+  //     color: #555;
+  //     width: 22px;
+  //     height: 22px;
+  //     font-size: 20px;
+  //     margin-left: 5px;
+  //     line-height: 20px;
+  //     text-align: center;
+  //     background: #f8f8f8;
+  //     text-decoration: none;
+  //     &:hover {
+  //       background: #efeeee;
+  //     }
+  //   }
+  // }
 }
 </style>

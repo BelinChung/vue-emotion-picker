@@ -1,7 +1,7 @@
 <template>
-  <ul class="emotions">
-    <li class="item" v-for="emo in props.emotions" :key="emo.phrase">
-      <a href="javascript:" class="face" @click="picked(emo.phrase)"
+  <ul class="emotion-emotions">
+    <li class="emotion-emotions__item" v-for="emo in props.emotions" :key="emo.phrase">
+      <a href="javascript:" class="emotion-emotions__face" @click="picked(emo.phrase)"
         ><img class="vue-emotion" :src="baseUrl + emo.url"
       /></a>
     </li>
@@ -18,15 +18,15 @@ const picked = (emo) => {
 </script>
 
 <style lang="scss" scoped>
-.emotions {
+.emotion-emotions {
   width: 372px;
   height: 187px;
   padding: 11px 0 0 1px;
-  .item {
+  &__item {
     float: left;
     list-style: none;
   }
-  .face {
+  &__face {
     z-index: 1;
     float: left;
     width: 26px;
