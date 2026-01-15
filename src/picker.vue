@@ -85,7 +85,7 @@ const onPicked = (emo) => {
 }
 
 const onClickOutside = (e) => {
-  if (e && e.target && e.target.closest('.emotion-reference')) return false
+  if (e.target && e.target.closest && e.target.closest('.emotion-reference')) return false
   emit('update:visible', false)
 }
 
